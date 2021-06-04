@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController // 36분
+@RestController
 @RequestMapping(path = "api/v1/student")
 public class StudentController {
 
