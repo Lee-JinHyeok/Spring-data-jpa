@@ -2,6 +2,7 @@ package com.example.demo.student;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Table
@@ -21,7 +22,11 @@ public class Student {
     private Long id;
     private String name;
     private String email;
+    //date of birth 생년월일 줄임말
     private LocalDate dob;
+
+    //데이터가 필요없거나 받지 않아도 시스템에 문제 없을경우에만
+    @Transient
     private Integer age;
 
     public Student(){
@@ -30,23 +35,19 @@ public class Student {
     public Student(Long id,
                    String name,
                    String email,
-                   LocalDate dob,
-                   Integer age) {
+                   LocalDate dob) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.age = age;
     }
 
     public Student(String name,
                    String email,
-                   LocalDate dob,
-                   Integer age) {
+                   LocalDate dob) {
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.age = age;
     }
 
     public Long getId() {
@@ -82,7 +83,8 @@ public class Student {
     }
 
     public Integer getAge() {
-        return age;
+        //사용자 나이를 계산해서 자동으로 삽입
+        return Period.between(this.dob, LocalDate.now()).getYears();
     }
 
     public void setAge(Integer age) {

@@ -5,9 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
-
-import static java.util.Calendar.JANUARY;
 
 @Configuration
 public class StudentConfig {
@@ -19,15 +18,13 @@ public class StudentConfig {
             Student jh = new Student(
                     "JH",
                     "myredfox1@gmail.com",
-                    LocalDate.of(2000, JANUARY, 5),
-                    25
+                    LocalDate.of(2000, Month.JANUARY, 5)
             );
 
             Student ysj = new Student(
                     "YSJ",
                     "ysj@gmail.com",
-                    LocalDate.of(2004, JANUARY, 5),
-                    25
+                    LocalDate.of(2004, Month.JANUARY, 5)
             );
             repository.saveAll(
                     List.of(jh, ysj)
